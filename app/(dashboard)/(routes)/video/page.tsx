@@ -16,8 +16,10 @@ import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Loader } from "@/components/loader";
 import { cn } from "@/lib/utils";
 import { formSchema } from "./constants";
+import { useProModal } from "@/hooks/use-pro-modal";
 
 const VideoPage = () => {
+  const proModal = useProModal();
   const router = useRouter();
 
   const [video, setVideo] = useState<string>();
@@ -38,8 +40,9 @@ const VideoPage = () => {
       setVideo(response.data[0]);
       form.reset();
     } catch (error: any) {
-      // TODO: open Pro modal
-      console.log(error);
+      if (error?.response?.status === 403) {
+        proModal.onOpen();
+      }
     } finally {
       router.refresh();
     }
@@ -92,7 +95,10 @@ const VideoPage = () => {
           )}
           {!video && !isLoading && <Empty label="No Video generated !" />}
           {video && !isLoading && (
-            <video controls className="w-full mt-8 aspect-video rounded-lg border bg-black">
+            <video
+              controls
+              className="w-full mt-8 aspect-video rounded-lg border bg-black"
+            >
               <source src={video} />
             </video>
           )}
