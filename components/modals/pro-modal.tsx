@@ -17,7 +17,7 @@ import { tools } from "@/constants";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-
+import toast from "react-hot-toast";
 
 export const ProModal = () => {
   const proModal = useProModal();
@@ -26,15 +26,15 @@ export const ProModal = () => {
   const onSubscribe = async () => {
     try {
       setIsLoading(true);
-      const response = axios.get('/api/stripe')
+      const response = axios.get("/api/stripe");
 
       window.location.href = (await response).data.url;
     } catch (error) {
-      console.log('stripe client error: ', error);
+      toast.error("Something went wrong! Please try again.");
     } finally {
       setIsLoading(false);
     }
-  }
+  };
 
   return (
     <Dialog open={proModal.isOpen} onOpenChange={proModal.onClose}>

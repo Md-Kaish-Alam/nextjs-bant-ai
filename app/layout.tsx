@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 
-import "./globals.css";
 import { ModalProvider } from "@/components/modals/modal-provider";
+import { ToasterProvider } from "@/components/providers/toaster-provider";
+
+import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,7 +20,7 @@ export const metadata: Metadata = {
       },
     ],
   },
-}; 
+};
 
 export default function RootLayout({
   children,
@@ -30,6 +32,7 @@ export default function RootLayout({
       <html lang="en">
         <body className={inter.className}>
           <ModalProvider />
+          <ToasterProvider />
           {children}
         </body>
       </html>
