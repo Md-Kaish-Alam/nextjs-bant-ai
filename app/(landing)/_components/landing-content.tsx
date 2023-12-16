@@ -1,6 +1,6 @@
 "use client";
 
-import { faker } from '@faker-js/faker';
+import { faker } from "@faker-js/faker";
 import Image from "next/image";
 
 const testimonials = [
@@ -48,11 +48,16 @@ export const LandingContent = () => {
         possibilities.
       </p>
       <div className="grid mb-8 lg:mb-12 lg:grid-cols-2 gap-4">
-        {testimonials.map((item) => (
-          <div className="flex flex-col justify-center items-center p-8 text-center border border-[#1f1f28] md:p-12 rounded-lg">
+        {testimonials.map((item, index) => (
+          <div
+            key={index}
+            className="flex flex-col justify-center items-center p-8 text-center border border-[#1f1f28] md:p-12 rounded-lg"
+          >
             <blockquote className="mx-auto mb-8 max-w-2xl text-white">
               <h3 className="text-lg font-semibold">{item.title}</h3>
-              <p className="my-4 text-muted-foreground">"{item.description}"</p>
+              <p className="my-4 text-muted-foreground">
+                &quot;{item.description}&quot;
+              </p>
             </blockquote>
             <div className="flex justify-center items-center space-x-3">
               <Image

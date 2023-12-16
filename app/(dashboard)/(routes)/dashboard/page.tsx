@@ -16,7 +16,7 @@ const DashboardPage = () => {
           Explore the Power of AI
         </h2>
         <p className="text-muted-foreground font-light text-sm md:text-lg text-center">
-          This AI platform is more than just a tool; it's a gateway to a world
+          This AI platform is more than just a tool; it&apos;s a gateway to a world
           of possibilities.
         </p>
       </div>
