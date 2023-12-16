@@ -6,6 +6,7 @@ import { ModalProvider } from "@/components/modals/modal-provider";
 import { ToasterProvider } from "@/components/providers/toaster-provider";
 
 import "./globals.css";
+import { CrispProvider } from "@/components/providers/crisp-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -30,6 +31,7 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
+        <CrispProvider />
         <body className={inter.className}>
           <ModalProvider />
           <ToasterProvider />
