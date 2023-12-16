@@ -273,7 +273,7 @@ const NotFoundPage = () => {
             <Link
               href="/"
               className={cn(
-                buttonVariants({ variant: "outline" }),
+                buttonVariants({ variant: "transparent" }),
                 "transition"
               )}
             >
