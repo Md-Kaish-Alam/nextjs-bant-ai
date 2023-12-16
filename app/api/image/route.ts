@@ -2,6 +2,7 @@ import { Configuration, OpenAIApi } from "openai";
 import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 import { checkApiLimit, increaseAPiLimit } from "@/lib/api-limit";
+import { checkSubscription } from "@/lib/subscription";
 
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
@@ -37,18 +38,22 @@ export async function POST(req: Request) {
     }
 
     const freeTrial = await checkApiLimit();
+    const isPro = await checkSubscription();
 
-    if (!freeTrial) {
+    if (!freeTrial && !isPro) {
       return new NextResponse("Free trial has exired.", { status: 403 });
     }
 
     const response = await openai.createImage({
       prompt,
       n: parseInt(amount, 10),
-      size: resolution
+      size: resolution,
     });
 
-    await increaseAPiLimit();
+    if (!isPro) {
+      await increaseAPiLimit();
+    }
+
     return NextResponse.json(response.data.data);
   } catch (error) {
     console.log("[IMAGE_ERROR]", error);
