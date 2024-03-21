@@ -34,7 +34,7 @@ Follow these steps to set up your local development environment:
 - **Clone the repository:**
 
   ```bash
-  git clone https://github.com/Md-Kaish-Alam/nextjs-bent-ai
+  git clone https://github.com/Md-Kaish-Alam/nextjs-bent-ai.git
   cd bentai
   ```
 
